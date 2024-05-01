@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1714586883 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
+	<iostream>
+	<locale.h>
+	<limits>
+
