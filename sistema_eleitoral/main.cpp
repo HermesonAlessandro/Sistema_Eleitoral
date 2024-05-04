@@ -15,35 +15,35 @@ int main(){
     vector<Candidato> candidatos; //Vetor para armazenar os candidatos
 
     //Cabecalho do sistema eleitoral e creditos
-    cout << "Sistema Eleitoral!" << endl << endl;
-    cout << "Sistema desenvolvido por: "<< endl;
-    cout << "Esdras" << endl;
-    cout << "Guilherme" << endl;
-    cout << "Hermeson" << endl;
-    cout << "Matheus" << endl;
-    cout << "Pedro Arthur" << endl << endl;
+    cout << "SISTEMA ELEITORAL!" << endl << endl;
+    cout << "SISTEMA DESENVOLVIDO POR: "<< endl;
+    cout << "ESDRAS" << endl;
+    cout << "GUILHERME" << endl;
+    cout << "HERMESON" << endl;
+    cout << "MATHEUS" << endl;
+    cout << "PEDRO ARTHUR" << endl << endl;
 
     // Menu de perguntas
-    cout << "Menu: "<< endl;
-    cout << "1 - para continuar! " << endl;
-    cout << "2 - para sair!" << endl;
-    cout << "escolha a opção desejada: " << endl;
+    cout << "MENU: "<< endl;
+    cout << "1 - para PARA CONTINUAR! " << endl;
+    cout << "2 - PARA SAIR!" << endl;
+    cout << "ESCOLHA A OPÇÃO DESEJADA: " << endl;
 
     while(!(cin >> numero) || (numero != 1 && numero != 2)){// armazenando um valor na variavel e atribuindo dois numero ao menu
     cin.clear(); // limpar o estado do erro
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Toda essa linha descarta a entrada incorreta
     system("cls"); // limpar todo codigo escrito para não ficar poluido
     cout << "VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!" << endl << endl; // cada vez que não o laço não é atendido volta para o inicio
-    cout << "Menu: "<< endl;
-    cout << "1 - para continuar! " << endl;
-    cout << "2 - para sair!" << endl;
-    cout << "escolha a opção desejada: " << endl;
+    cout << "MENU: "<< endl;
+    cout << "1 - PARA CONTINUAR! " << endl;
+    cout << "2 - PARA SAIR!" << endl;
+    cout << "ESCOLHA A OPÇAO DESEJADA: " << endl;
     }
 
     switch(numero){ // verifica os valores digitados pelo usuario
     case 1: { // caso seja verdade todo esse conjunto de codigos serão executados
         system("cls"); // limpa o sistema
-        cout << "Você entrou no sistema!" << endl;
+        cout << "VOCÊ ENTROU NO SISTEMA!" << endl << endl;
         cout<<"Quantos usuarios irao participar da eleicao?"<<endl;
         cin>>qtd_eleitores; // Definindo quantos usuarios irao participar da eleicao(min 2)
         while(qtd_eleitores < 2){
@@ -92,7 +92,7 @@ int main(){
         break;} // encerra o laço imediatamente
     case 2: // caso seja verdade todo esse conjunto de codigos serão executados
         system("cls"); // limpa o sistema
-        cout << "Sistema encerrado com sucesso, clique em qualquer tecla para sair!" << endl;
+        cout << "SISTEMA ENCERRADO COM SUCESSO, CLIQUE EM QUALQUER TECLA PARA SAIR!" << endl;
         break; // encerra o laço imediatamente
     default: // esse comando não vai servir de muita coisa por causa do while, mas serve como uma boa pratica de programação
         system("cls"); // limpa o sistema
