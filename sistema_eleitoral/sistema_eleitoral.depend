@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1714787731 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
+1714788184 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>
 	<locale.h>
 	<limits>

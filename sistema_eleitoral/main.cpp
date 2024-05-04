@@ -18,9 +18,9 @@ int main(){
     cout << "SISTEMA ELEITORAL!" << endl << endl;
     cout << "SISTEMA DESENVOLVIDO POR: "<< endl;
     cout << "ESDRAS" << endl;
-    cout << "GUILHERME" << endl;
-    cout << "HERMESON" << endl;
-    cout << "MATHEUS" << endl;
+    cout << "ANTONIO GUILHERME SOUSA LIMA" << endl;
+    cout << "HERMESON ALESSANDRO MELO DE SOUSA" << endl;
+    cout << "MATHEUS LEITE LIMA" << endl;
     cout << "PEDRO ARTHUR" << endl << endl;
 
     // Menu de perguntas
