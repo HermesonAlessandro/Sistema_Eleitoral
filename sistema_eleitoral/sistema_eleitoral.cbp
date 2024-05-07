@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="candidatos_eleitores.cpp" />
 		<Unit filename="candidatos_eleitores.h" />
+		<Unit filename="centralizarTexto.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
