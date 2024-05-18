@@ -34,6 +34,6 @@ class Candidato : public Eleitor{
     unsigned int votos; //Atributo para armazenar a quantidade de votos
 };
 
-void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores);
-void adicionarNumeroVotacao(vector<Candidato>& candidatos, const Eleitor& eleitor);
+void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>&candidatos);
+
 

@@ -1,4 +1,4 @@
-#include <iostream> // Entrada e saida de codigo e manipulação
+#include <iostream> // Entrada e saida de codigo e manipulaÃ§ao
 #include <locale.h> // Tradutor conforme o sistema
 #include <limits> // Define um limite para um tipo de dado
 #include <string> // Uso de strings
@@ -8,16 +8,16 @@
 #include "centralizarTexto.h" // // Inclui o conteudo desse arquivo
 using namespace std;
 
-//função para centralizar o texto
-void centralizarTexto(string texto){ // Definindo a função que é vazia que recebe como argumento um texto do tipo string
+//funï¿½ï¿½o para centralizar o texto
+void centralizarTexto(string texto){ // Definindo a funÃ§Ã£o que Ã© vazia que recebe como argumento um texto do tipo string
     int larguraconsole = 40; // Define isso para a largura da janela do console
-    int espaco = (larguraconsole - texto.size() - 4 ) / 2; // pega o tamanho do texto e subtrai da largura do console, subtraimos 4 para os asteriscos e depois divide por 2, defini o numero de espaços em branco antes do texto ser empresso
-    cout << "* "; // imprime um asterisco seguido de um espaço
-    for(int i = 0; i < espaco; i++) cout << " "; // imprimir espaços em branco, movimentando o texto para direita dando uma aparencia de centraliazado
-    cout << texto; // o texto é impresso
-    for(int i = 0; i < espaco; i ++) cout << " "; // funciona da mesma maneira so que a diferença é que esse loop é executado a apos a impressão do texto
+    int espaco = (larguraconsole - texto.size() - 4 ) / 2; // pega o tamanho do texto e subtrai da largura do console, subtraimos 4 para os asteriscos e depois divide por 2, defini o numero de espaÃ§os em branco antes do texto ser empresso
+    cout << "* "; // imprime um asterisco seguido de um espaÃ§o
+    for(int i = 0; i < espaco; i++) cout << " "; // imprimir espaÃ§os em branco, movimentando o texto para direita dando uma aparencia de centraliazado
+    cout << texto; // o texto Ã© impresso
+    for(int i = 0; i < espaco; i ++) cout << " "; // funciona da mesma maneira so que a difereÃ§a e que esse loop Ã© executado a apos a impressÃ£o do texto
     if(texto.size()% 2 != 0) cout << " "; // para ajustar se o tamanho do texto for impar
-    cout << " *" << endl; // imprime um espaço seguido de um asterisco na tela de console em seguida pula a proxima linha
+    cout << " *" << endl; // imprime um espaÃ§o seguido de um asterisco na tela de console em seguida pula a proxima linha
 }
 
 int main(){
@@ -30,7 +30,7 @@ int main(){
     cout << "****************************************" << endl;
     centralizarTexto("SISTEMA ELEITORAL");
     centralizarTexto("SISTEMA DESENVOLVIDO POR: ");
-    centralizarTexto("ESDRAS RODRIGUES MILITÃO" );
+    centralizarTexto("ESDRAS RODRIGUES MILITï¿½O" );
     centralizarTexto("ANTONIO GUILHERME SOUSA LIMA");
     centralizarTexto("HERMESON ALESSANDRO MELO DE SOUSA");
     centralizarTexto("MATHEUS LEITE LIMA");
@@ -46,14 +46,14 @@ int main(){
     centralizarTexto("2 - PARA SAIR!");
     cout << "****************************************" << endl;
     cout << endl;
-    cout << "ESCOLHA A OPÇÃO DESEJADA: " << endl;
+    cout << "ESCOLHA A OPï¿½ï¿½O DESEJADA: " << endl;
 
     while(!(cin >> numero) || (numero != 1 && numero != 2)){// armazenando um valor na variavel e atribuindo dois numero ao menu
     cin.clear(); // limpar o estado do erro
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Toda essa linha descarta a entrada incorreta
-    system("cls");// limpar todo codigo escrito para não ficar poluido
+    system("cls");// limpar todo codigo escrito para nï¿½o ficar poluido
     cout << "**********************************************" << endl;
-    centralizarTexto("VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!");// cada vez que não o laço não é atendido volta para o inicio
+    centralizarTexto("VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!");// cada vez que nÃ£o o laÃ§o nÃ£o Ã© atendido volta para o inicio
     cout << "**********************************************" << endl;
     cout << endl;
     cout << endl;
@@ -62,18 +62,18 @@ int main(){
     centralizarTexto("1 - PARA CONTINUAR! ");
     centralizarTexto("2 - PARA SAIR!");
     cout << "****************************************" << endl;
-    cout << "ESCOLHA A OPÇAO DESEJADA: " << endl;;
+    cout << "ESCOLHA A OPï¿½AO DESEJADA: " << endl;;
     }
 
     switch(numero){ // verifica os valores digitados pelo usuario
-    case 1: { // caso seja verdade todo esse conjunto de codigos serão executados
+    case 1: { // caso seja verdade todo esse conjunto de codigos serÃ£o executados
         system("cls"); // limpa o sistema
         cout << "****************************************" << endl;
-        centralizarTexto("VOCÊ ENTROU NO SISTEMA, BEM VINDO!");
+        centralizarTexto("VOCï¿½ ENTROU NO SISTEMA, BEM VINDO!");
         cout << "****************************************" << endl;
         cout << endl;
         cout << "************************************************************" << endl;
-        centralizarTexto("QUANTOS USUARIOS IRÃO PARTICIPAR DA ELEIÇÃO? (MINIMO 2)");
+        centralizarTexto("QUANTOS USUARIOS IRï¿½O PARTICIPAR DA ELEIï¿½ï¿½O? (MINIMO 2)");
         cout << "************************************************************" << endl;
         cin>>qtd_eleitores;// Definindo quantos usuarios irao participar da eleicao(min 2)
         cout << endl;
@@ -85,7 +85,7 @@ int main(){
             cout << "**********************************************" << endl;
             cin >> qtd_eleitores;
             cout << endl;
-        } // While responsavel por ver se o que o usuario digitar é maior ou igual a 2 e se é um numero
+        } // While responsavel por ver se o que o usuario digitar ï¿½ maior ou igual a 2 e se ï¿½ um numero
         cout << "****************************************" << endl;
         centralizarTexto("QUANTIDADE REGISTRADA COM SUCESSO!");
         cout << "****************************************" << endl;
@@ -101,35 +101,25 @@ int main(){
         for (int i = 0; i < numero_eleitores; ++i) {
             cout << "\n=== ELEITOR " << i + 1 << " ===\n";
             Eleitor eleitor("", 0, 0); // Cria um eleitor com valores padroes
-            atribuirValoresEleitor(eleitor, eleitores); // Funcao para atribuir valores ao eleitor
-            eleitores.push_back(eleitor);//Adiciona o eleitor ao vetor de eleitores
+            atribuirValoresEleitor(eleitor, eleitores, candidatos); // Funcao para atribuir valores ao eleitor e perguntar se quer se candidatar
+            eleitores.push_back(eleitor);//Adiciona o eleitor ao vetor de eleitores e/ou candidatos
             cout << "****************************************" << endl;
             centralizarTexto("ELEITOR CADASTRADO COM SUCESSO!");
             cout << "****************************************" << endl;
         }
 
-        // Estrutura de repeticao que registra o numero de votacao para cada candidato
-
-
-        for (const auto& eleitor : eleitores) {
-            cout << "\n=== CANDIDADO ===\n";
-            adicionarNumeroVotacao(candidatos, eleitor); // Funcao para adicionar numero de votacao
-        }
-
-        system("cls"); // apaga as letras ja escritas pelo o usuario para não deixar tão poluido
-
         // Mostra todos os eleitores cadastrados e suas respectivas informacoes
         cout << "****************************************" << endl;
         centralizarTexto("ELEITORES CADASTRADOS:");
         for (int i = 0; i < numero_eleitores; ++i) {
-            centralizarTexto("Nome: " + eleitores[i].nome);
-            centralizarTexto("Idade: " + to_string(eleitores[i].idade));
+            centralizarTexto("NOME: " + eleitores[i].nome);
+            centralizarTexto("IDADE: " + to_string(eleitores[i].idade));
             centralizarTexto("ID: " + to_string(eleitores[i].id));
         }
         cout << "****************************************" << endl;
         }
         cout << endl;
-        // Mostra todos os candidatos cadastrados e suas respectivas informacões
+        // Mostra todos os candidatos cadastrados e suas respectivas informacï¿½es
         cout << "****************************************" << endl;
         centralizarTexto("CANDIDATOS CADASTRADOS:");
         for(const auto& candidato: candidatos){
@@ -140,15 +130,15 @@ int main(){
         }
         cout << "****************************************" << endl;
 
-        break; // encerra o laço imediatamente
-    case 2: // caso seja verdade todo esse conjunto de codigos serão executados
+        break; // encerra o laÃ§o imediatamente
+    case 2: // caso seja verdade todo esse conjunto de codigos serao executados
         system("cls"); // limpa o sistema
         cout << "**********************************************************************" << endl;
         centralizarTexto("SISTEMA ENCERRADO COM SUCESSO, CLIQUE EM QUALQUER TECLA PARA SAIR!");
         cout << "**********************************************************************" << endl;
-        break; // encerra o laço imediatamente
-    default: // esse comando não vai servir de muita coisa por causa do while, mas serve como uma boa pratica de programação
+        break; // encerra o laÃ§o imediatamente
+    default: // esse comando nÃ£o vai servir de muita coisa por causa do while, mas serve como uma boa pratica de programaÃ§Ã£o
         system("cls"); // limpa o sistema
     }
-return 0; // função que retorna um inteiro
+return 0; // funÃ§Ã£oo que retorna um inteiro
 }

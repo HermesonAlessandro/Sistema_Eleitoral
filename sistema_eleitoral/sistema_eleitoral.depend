@@ -9,7 +9,7 @@
 	<algorithm>
 	"centralizarTexto.h"
 
-1714762698 source:c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\main.cpp
+1716067911 source:c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>
 	<locale.h>
 	<limits>
@@ -17,15 +17,19 @@
 	<vector>
 	"candidatos_eleitores.h"
 	<algorithm>
+	"centralizarTexto.h"
 
-1714441173 source:c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
+1716068000 source:c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
 	<algorithm>
 	<iostream>
 	<string>
 	<vector>
 	"candidatos_eleitores.h"
+	"centralizarTexto.h"
+	<limits>
+	<functional>
 
-1714764422 c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.h
+1716067852 c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.h
 	<string>
 	<vector>
 
@@ -72,4 +76,7 @@
 	"candidatos_eleitores.h"
 	<algorithm>
 	"centralizarTexto.h"
+
+1716066682 c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\centralizartexto.h
+	<string>
 
