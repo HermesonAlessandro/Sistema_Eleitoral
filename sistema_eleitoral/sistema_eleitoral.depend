@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1716148671 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
+1716155183 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>
 	<locale.h>
 	<limits>
@@ -8,6 +8,7 @@
 	"candidatos_eleitores.h"
 	<algorithm>
 	"centralizarTexto.h"
+	<iomanip>
 
 1714762698 source:c:\users\guilherme\documents\github\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>

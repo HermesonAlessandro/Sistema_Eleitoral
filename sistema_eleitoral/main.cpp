@@ -6,6 +6,7 @@
 #include "candidatos_eleitores.h" // Inclui o arquivo com as classes e funcoes utilizadas
 #include <algorithm> // Usado para ordenar e procurar
 #include "centralizarTexto.h" // // Inclui o conteudo desse arquivo
+#include <iomanip>
 using namespace std;
 
 //função para centralizar o texto
@@ -18,6 +19,22 @@ void centralizarTexto(string texto){ // Definindo a função que é vazia que re
     for(int i = 0; i < espaco; i ++) cout << " "; // funciona da mesma maneira so que a difereça e que esse loop é executado a apos a impressão do texto
     if(texto.size()% 2 != 0) cout << " "; // para ajustar se o tamanho do texto for impar
     cout << " *" << endl; // imprime um espaço seguido de um asterisco na tela de console em seguida pula a proxima linha
+}
+
+void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // Função que recebe dois argumentos o vetor de eleitor e numero inteiro de numero_eleitor
+        system("cls");
+        cout << "****************************************" << endl;
+        centralizarTexto("NUMERO DE ELEITORES: " + to_string(numero_eleitores)); // Fazendo uma conversão para string para armazenar o conjunto de eleitores
+        cout << "****************************************" << endl;
+        cout << endl;
+        cout << "****************************************" << endl;
+        centralizarTexto("ELEITORES CADASTRADOS: ");
+        for(int i = 0; i < numero_eleitores; i++){ // Tem esse laço de repetição que pecorre cada eleitor no vetor eleitores para cada eleitor ele imprime o nome, idade, id
+            centralizarTexto("NOME: " + eleitores[i].nome);
+            centralizarTexto("IDADE: " + to_string(eleitores[i].idade));
+            centralizarTexto("ID: " + to_string(eleitores[i].id));
+}
+         cout << "****************************************" << endl;
 }
 
 int main(){
@@ -108,29 +125,8 @@ int main(){
             cout << "****************************************" << endl;
         }
         cout << endl;
-
-        // Mostra todos os eleitores cadastrados e suas respectivas informacoes
-        cout << "****************************************" << endl;
-        centralizarTexto("ELEITORES CADASTRADOS:");
-        for (int i = 0; i < numero_eleitores; ++i) {
-            centralizarTexto("NOME: " + eleitores[i].nome);
-            centralizarTexto("IDADE: " + to_string(eleitores[i].idade));
-            centralizarTexto("ID: " + to_string(eleitores[i].id));
-        }
-        cout << "****************************************" << endl;
-        }
-        cout << endl;
-        // Mostra todos os candidatos cadastrados e suas respectivas informac�es
-        cout << "****************************************" << endl;
-        centralizarTexto("CANDIDATOS CADASTRADOS:");
-        for(const auto& candidato: candidatos){
-            centralizarTexto("NOME: " + candidato.nome);
-            centralizarTexto("IDADE: " + to_string(candidato.idade));
-            centralizarTexto("ID: " + to_string(candidato.id));
-            centralizarTexto("NUMERO DA VOTACAO: " + to_string(candidato.numero_votacao));
-        }
-        cout << "****************************************" << endl;
-
+        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
+    }
         break; // encerra o laço imediatamente
     case 2: // caso seja verdade todo esse conjunto de codigos serao executados
         system("cls"); // limpa o sistema
