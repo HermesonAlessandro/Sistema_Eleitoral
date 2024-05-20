@@ -56,13 +56,13 @@ void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, 
     cout<<"DIGITE O ID DO ELEITOR (00000 - 99999)"<<endl;
     cin>>eleitor.id;
     cout << endl;
-    while(cin.fail() || eleitor.id < 10000 || eleitor.id > 99999 || find_if(eleitores.begin(), eleitores.end(), bind(compararID, placeholders::_1, eleitor.id)) != eleitores.end()){
+    while(cin.fail() || eleitor.id > 99999 || find_if(eleitores.begin(), eleitores.end(), bind(compararID, placeholders::_1, eleitor.id)) != eleitores.end()){
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (cin.fail() || eleitor.id < 10000 || eleitor.id > 99999) {
-    cout << "************************************************" << endl;
-        centralizarTexto("ERRO! O ID DEVE SER UM NUMERO DE 5 DIGITOS!");
-    cout << "************************************************" << endl;
+    if (cin.fail() || eleitor.id > 99999) {
+    cout << "********************************************************" << endl;
+        centralizarTexto("ERRO DE ID OU O ID DEVE SER UM NUMERO DE 5 DIGITOS!");
+    cout << "********************************************************" << endl;
     } else {
         cout << "********************************************************" << endl;
         centralizarTexto("ERRO! ESSE ID JA ESTA SENDO USADO POR OUTRO ELEITOR.");

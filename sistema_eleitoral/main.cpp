@@ -35,7 +35,23 @@ void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // F
             centralizarTexto("ID: " + to_string(eleitores[i].id));
 }
          cout << "****************************************" << endl;
-}
+} // Término da função
+
+void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que recebe um vetor de candidatos onde tem algumas propiedades como nome, idade, id, numero_votação
+     cout << "****************************************" << endl;
+     centralizarTexto("NUMEROS DE CANDIDATOS: " + std::to_string(candidato.size())); // Ele imprime o numero de candidatos convertendo o inteiro para string
+     cout << "****************************************" << endl;
+     cout << endl;
+     cout << "****************************************" << endl;
+     centralizarTexto("CANDIDATOS CADASTRADOS:");
+     for(const auto& candidato: candidato){ // Loop que pecorre cada candidato no vetor imprindo seu nome idade e etc
+        centralizarTexto("NOME: " + candidato.nome);
+        centralizarTexto("IDADE: " + to_string(candidato.idade));
+        centralizarTexto("ID: " + to_string(candidato.id));
+        centralizarTexto("NUMERO DA VOTACAO: " + to_string(candidato.numero_votacao));
+     }
+     cout << "****************************************" << endl;
+} // Término da função
 
 int main(){
     setlocale(LC_ALL, ""); // traz para a lingua do sistema operacional
@@ -125,7 +141,52 @@ int main(){
             cout << "****************************************" << endl;
         }
         cout << endl;
-        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
+        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função mostrarEleitor
+        cout << endl;
+        mostrarCandidatos(candidatos); // Chamando a função mostrarCandidatos
+        cout << endl;
+
+        if(candidatos.size() < 1){ // Fazendo a verificação de quantos candidatos tem no sistema
+            cout << "****************************************" << endl;
+            centralizarTexto("NAO E POSSIVEL INICIAR A ELEICAO.");
+            centralizarTexto("NAO HA CANDIDATOS SUFICIENTES.");
+            cout << "****************************************" << endl;
+            return 0; // Encerra o programa
+        }
+
+        int iniciareleicao; // Variavel para eleição
+        cout << "****************************************" << endl;
+        centralizarTexto("DESEJA INICIAR A ELEICAO?");
+        centralizarTexto("1 - SIM");
+        centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
+        cout << "****************************************" << endl;
+        cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
+        // Menu da eleição
+        while(!(cin >> iniciareleicao)|| (iniciareleicao !=1 && iniciareleicao !=0)){ //Laço de repetição para caso o usuario digite algo diferente de 0 e 1
+            cin.clear(); // Limpa a tela
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora e passa para a proxima linha
+            system("cls"); // Limpo a execução para não ficar poluido de informações
+            cout << "**********************************************" << endl;
+            centralizarTexto("VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!");
+            cout << "**********************************************" << endl;
+            cout << endl;
+            cout << endl;
+            cout << "****************************************" << endl;
+            centralizarTexto("DESEJA INICIAR A ELEICAO?");
+            centralizarTexto("1 - SIM");
+            centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
+            cout << "****************************************" << endl;
+            cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
+            // Exibo o sistema novamente para o usuario digitar até que ele digite algo conferente
+        }
+        if(iniciareleicao == 1){
+
+        }else{
+        system("cls"); // limpa o sistema
+        cout << "**********************************************************************" << endl;
+        centralizarTexto("SISTEMA ENCERRADO COM SUCESSO, CLIQUE EM QUALQUER TECLA PARA SAIR!");
+        cout << "**********************************************************************" << endl;
+        } // Else sera executado quando o usuario digitar 0
     }
         break; // encerra o laço imediatamente
     case 2: // caso seja verdade todo esse conjunto de codigos serao executados

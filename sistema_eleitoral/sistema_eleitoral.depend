@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1716155183 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
+1716226035 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>
 	<locale.h>
 	<limits>
@@ -30,7 +30,7 @@
 	<string>
 	<vector>
 
-1716149083 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
+1716222795 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
 	<algorithm>
 	<iostream>
 	<string>
