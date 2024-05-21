@@ -35,7 +35,7 @@ void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // F
             centralizarTexto("ID: " + to_string(eleitores[i].id));
 }
          cout << "****************************************" << endl;
-} // Término da função
+}
 
 void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que recebe um vetor de candidatos onde tem algumas propiedades como nome, idade, id, numero_votação
      cout << "****************************************" << endl;
@@ -141,7 +141,7 @@ int main(){
             cout << "****************************************" << endl;
         }
         cout << endl;
-        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função mostrarEleitor
+        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
         cout << endl;
         mostrarCandidatos(candidatos); // Chamando a função mostrarCandidatos
         cout << endl;
@@ -154,15 +154,16 @@ int main(){
             return 0; // Encerra o programa
         }
 
-        int iniciareleicao; // Variavel para eleição
+        int iniciarTelaEleicao; // Variavel para eleição
         cout << "****************************************" << endl;
         centralizarTexto("DESEJA INICIAR A ELEICAO?");
         centralizarTexto("1 - SIM");
         centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
         cout << "****************************************" << endl;
+        cout << endl;
         cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
         // Menu da eleição
-        while(!(cin >> iniciareleicao)|| (iniciareleicao !=1 && iniciareleicao !=0)){ //Laço de repetição para caso o usuario digite algo diferente de 0 e 1
+        while(!(cin >> iniciarTelaEleicao)|| (iniciarTelaEleicao !=1 && iniciarTelaEleicao !=0)){ //Laço de repetição para caso o usuario digite algo diferente de 0 e 1
             cin.clear(); // Limpa a tela
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora e passa para a proxima linha
             system("cls"); // Limpo a execução para não ficar poluido de informações
@@ -176,10 +177,11 @@ int main(){
             centralizarTexto("1 - SIM");
             centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
             cout << "****************************************" << endl;
+            cout << endl;
             cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
             // Exibo o sistema novamente para o usuario digitar até que ele digite algo conferente
         }
-        if(iniciareleicao == 1){
+        if(iniciarTelaEleicao == 1){
 
         }else{
         system("cls"); // limpa o sistema
@@ -188,6 +190,7 @@ int main(){
         cout << "**********************************************************************" << endl;
         } // Else sera executado quando o usuario digitar 0
     }
+
         break; // encerra o laço imediatamente
     case 2: // caso seja verdade todo esse conjunto de codigos serao executados
         system("cls"); // limpa o sistema

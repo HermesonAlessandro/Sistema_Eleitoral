@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1716226035 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
+1716155183 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\main.cpp
 	<iostream>
 	<locale.h>
 	<limits>
@@ -30,7 +30,7 @@
 	<string>
 	<vector>
 
-1716222795 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
+1716149083 source:c:\users\hermeson alessandro\documents\sistema_eleitoral\sistema_eleitoral\candidatos_eleitores.cpp
 	<algorithm>
 	<iostream>
 	<string>
@@ -73,4 +73,32 @@
 	"candidatos_eleitores.h"
 	<algorithm>
 	"centralizarTexto.h"
+
+1716149083 source:c:\users\hermeson alessandro\documents\backup - sistema\sistema_eleitoral\candidatos_eleitores.cpp
+	<algorithm>
+	<iostream>
+	<string>
+	<vector>
+	"candidatos_eleitores.h"
+	"centralizarTexto.h"
+	<limits>
+	<functional>
+
+1716147480 c:\users\hermeson alessandro\documents\backup - sistema\sistema_eleitoral\candidatos_eleitores.h
+	<string>
+	<vector>
+
+1716147512 c:\users\hermeson alessandro\documents\backup - sistema\sistema_eleitoral\centralizartexto.h
+	<string>
+
+1716155684 source:c:\users\hermeson alessandro\documents\backup - sistema\sistema_eleitoral\main.cpp
+	<iostream>
+	<locale.h>
+	<limits>
+	<string>
+	<vector>
+	"candidatos_eleitores.h"
+	<algorithm>
+	"centralizarTexto.h"
+	<iomanip>
 
