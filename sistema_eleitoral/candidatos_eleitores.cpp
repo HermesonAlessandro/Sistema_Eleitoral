@@ -1,7 +1,7 @@
-#include <algorithm>
+#include <algorithm> // Manipulação de sequencias de elementos
 #include <iostream>
-#include <string>
-#include <vector>
+#include <string> // Fornece a classe de string variadas
+#include <vector> // Contêiner que crescer e aumenta conforme o numero de informação
 #include "candidatos_eleitores.h"
 #include "centralizarTexto.h" // Inclui o conteudo desse arquivo
 #include <limits> // Define um limite para um tipo de dado
@@ -9,40 +9,54 @@
 using namespace std;
 
 //Receber os valores atributos do eleitor pelo usuario
-
 bool compararID(const Eleitor& e, const unsigned int& id) { // Funçao que recebe dois paramentros constantes eleitor e id
     return e.id == id; // Aqui vai ter uma comparaçao entre os dois objetos se forem igual retorne true e se não false
 } // fechamento da funçãoo
 
+bool validarNome(const string& nome) { // Criação de uma função que receba uma variavel constante nome como paramentos onde vamos verificar se o nome é valido conforme as regras
+    if (!isalpha(nome[0])) {  // Verifica se o primeiro caractere é uma letra
+        return false; //Se o primeiro caractere não for uma letra ela dar como falsa ai ela termina imediatamente
+    }
+    for (char c : nome) { // Laço de repetição que pecorre cada letra da string
+        if (!isalpha(c) && c != ' ') { // Ele verifica se é uma letra ou espaço se der falsa ele retorna falso
+            return false; // Se c não for nem letra e nem numero ele retorna falso
+        }
+    }
+    return true; // Significa que não retornou falso e que são caracteres e são espaços em branco ou seja ele retorna true
+}
 
-void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>& candidatos) {
-    cout<<"DIGITE O NOME DO ELEITOR: "<<endl;
-    cin>>eleitor.nome;
-    cout << endl;
-    while(!all_of(eleitor.nome.begin(), eleitor.nome.end(), ::isalpha)){ // Estes são os iteratores para o inicio e fim de uma string
-        cout << "********************************************" << endl;
-        centralizarTexto("ERRO! O NOME DEVE CONTER APENAS LETRAS!");
-        cout << "********************************************" << endl;
+void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>& candidatos) {// Função de candidatos e eleitores
+    do {
+        cout << "DIGITE O NOME DO ELEITOR: " << endl;
+        cin.ignore();
+        getline(cin, eleitor.nome); // Lê a linha inteira da entrada padrão e armazena na variavel nome
         cout << endl;
-        cout<<"DIGITE O NOME DO ELEITOR: "<<endl;
-        cin >> eleitor.nome;
-        cout << endl;
-    } // Esse while faz a verificação do que o usuario digitar caso não seja uma letra ela manda fazer o procedimento novamente
 
+        if (validarNome(eleitor.nome)) { // Validador de nome se retornar true ele vai retornar verdade e logo vai parar o laço com break
+            break;
+        } else {
+            cout << "******************************************************" << endl;
+            centralizarTexto("ERRO! O NOME DEVE CONTER APENAS LETRAS E ESPACOS!");
+            cout << "******************************************************" << endl;
+            cout << endl;
+        }
+    } while (true); // Vai executar enquanto aquilo for verdade
+
+    string idade_str; // Criação de uma variavel do tipo string
     cout<<"DIGITE A IDADE DO ELEITOR"<<endl;
-    cin>>eleitor.idade;
+    cin>> idade_str; // lendo a variavel
     cout << endl;
-    while(cin.fail()){
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while(!all_of(idade_str.begin(), idade_str.end(), ::isdigit)){ // laço testando cada argumento em que o usuario digitar
         cout << "****************************************" << endl;
         centralizarTexto("ERRO! A IDADE DEVE SER UM NUMERO!");
         cout << "****************************************" << endl;
         cout << endl;
         cout<<"DIGITE A IDADE DO ELEITOR"<<endl;
-        cin >> eleitor.idade;
+        cin >> idade_str;
         cout << endl;
-    } // Esse while faz a verificação do que o cara digitar caso não seja satisfatorio ele limpa e ignora e manda o usuario digitar novamente
+    }
+        eleitor.idade = stoi(idade_str); // Esse aqui converte de string para inteiro
+
     while (eleitor.idade < 18) {
         cout << "****************************************" << endl;
         centralizarTexto("ELEITOR MENOR DE 18 ANOS.");
@@ -53,84 +67,80 @@ void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, 
         cout << endl;
     } // Esse while se encarrega de verificar se o eleitor é menor de 18 anos
 
-    cout<<"DIGITE O ID DO ELEITOR (00000 - 99999)"<<endl;
-    cin>>eleitor.id;
+    string id_str; // Variavel do tipo inteiro
+    cout<<"DIGITE O ID DO ELEITOR (00001 - 99999)"<<endl;
+    cin>>id_str; // Lendo a minha variavel
     cout << endl;
-    while(cin.fail() || eleitor.id < 10000 || eleitor.id > 99999 || find_if(eleitores.begin(), eleitores.end(), bind(compararID, placeholders::_1, eleitor.id)) != eleitores.end()){
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (cin.fail() || eleitor.id < 10000 || eleitor.id > 99999) {
-    cout << "************************************************" << endl;
-        centralizarTexto("ERRO! O ID DEVE SER UM NUMERO DE 5 DIGITOS!");
-    cout << "************************************************" << endl;
-    } else {
-        cout << "********************************************************" << endl;
-        centralizarTexto("ERRO! ESSE ID JA ESTA SENDO USADO POR OUTRO ELEITOR.");
-        cout << "********************************************************" << endl;
-    }
+    while(!all_of(id_str.begin(), id_str.end(), ::isdigit) || id_str.size() != 5 || stoi(id_str) == 0 || find_if(eleitores.begin(), eleitores.end(), bind(compararID, placeholders::_1, stoi(id_str))) != eleitores.end()){ // Laço de repetiçã que executa até dar certo
+    cout << "******************************************************************************************************************************************" << endl;
+    centralizarTexto("ERRO DE ID OU SEU ID E DE NO MINIMO 5 NUMEROS OU SEU ID TEM QUE ESTA NA FAIXA DE 00001 - 99999 OU OUTRA PESSOA JA ESTA USANDO O SEU ID");
+    cout << "******************************************************************************************************************************************" << endl;
     cout << endl;
-    cout<<"DIGITE O ID DO ELEITOR (00000 - 99999)"<<endl;
-    cin>>eleitor.id;
+    cout<<"DIGITE O ID DO ELEITOR (00001 - 99999)"<<endl;
+    cin>>id_str; // Vai ficar lendo o que o usuario digitar
     cout << endl;
-} // Esse while se encarrega de testar se os dois id s�o iguais, caso sejam retorna para o inicio madando o usuario digitar o id novamente
-    while(true){
-        if (eleitor.id > 99999){
-            cout<<"ERRO EM INCLUIR ELEITOR! DIGITE O ID NA FAIXA ENTRE 00000 E 99999."<<endl;
-            cout<<"DIGITE  O ID DO ELEITOR (00000 - 99999)"<<endl;
-            cin>>eleitor.id;
-        }else{
-            break;
-        }
-    } // Esse id é executado quando o usuario digitar algo diferente de numeros ou seja na formatação
+}
+    eleitor.id = stoi(id_str); // Depois ele converte para inteiro
 
     //pergunta se o eleitor deseja se candidatar
-    int resposta;
+
+    string resposta_str; // Declara uma variavel do tipo string
+    do { // Vai ficar executando até que seja interropido com laço break
     cout << "************************************************************************" << endl;
     centralizarTexto("DESEJA SE CANDIDATAR PARA A ELEICAO? DIGITE 1 PARA SIM E 0 PARA NAO.");
     cout << "************************************************************************" << endl;
-    cin>>resposta;
+    cin >> resposta_str; // Lendo a variavel
     cout << endl;
 
+    if(resposta_str.size() == 1 && (resposta_str[0] == '0' || resposta_str[0] == '1')) {
+        break;
+        // Na linha acima Se o que usuario digitar foe exatamente 1 o programa vai executar conjunto de comandos que sera parado com break e depois manda o usuario digitar novamente
+    } else {
+        cout << "******************************************" << endl;
+        centralizarTexto("ERRO! DIGITE 1 PARA SIM E 0 PARA NAO.");
+        cout << "******************************************" << endl;
+        cout << endl;
+    } // Caso não esteja correta
+} while(true); // Vai sempre executar enquanto não estiver correto
+
+    int resposta = stoi(resposta_str); // Depois que valida é convertido para string o valor
+
     if (resposta==1){
-        unsigned int numero_votacao; // Variavel do tipo unsigned int que sera usada para armazenar o numero de votação inserido pelo usuario
-        bool numeroExiste; // Teste logico
-        do{
-            cout << "DIGITE O NUMERO DE VOTACAO DO CANDIDATO " <<eleitor.nome<< "(5 DIGITOS): "<< endl; // pede um dado
-            cin >> numero_votacao; // Ler esse dado e depois armazena na variavel numero_votacao
-            cout << endl;
-            if(cin.fail() || numero_votacao < 10000 || numero_votacao > 99999){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "**************************************************************" << endl;
-                centralizarTexto("ERRO! O NUMERO DE VOTACAO DEVE SER UM NUMERO DE 5 DIGITOS!");
-                cout << "**************************************************************" << endl;
+        string numero_votacao_str; // Declarando uma variavel numero_votacao_str do tipo string
+    do{
+    cout << "DIGITE O NUMERO DE VOTACAO DO CANDIDATO " <<eleitor.nome<< "(5 DIGITOS): "<< endl; // pede um dado
+    cin >> numero_votacao_str; // Ler esse dado e depois armazena na variavel numero_votacao_str
+    cout << endl;
+    if(!all_of(numero_votacao_str.begin(), numero_votacao_str.end(), ::isdigit) || numero_votacao_str.size() != 5 || stoi(numero_votacao_str) == 0 || stoi(numero_votacao_str) == eleitor.id || find_if(eleitores.begin(), eleitores.end(), bind(compararID, placeholders::_1, stoi(numero_votacao_str))) != eleitores.end()){ // Caso o usuario não digite numeros e não digite um tamanho de 5 espaços vai ser executado um conjunto de comandos
+        cout << "********************************************************************************************************" << endl;
+        centralizarTexto("ERRO! O NUMERO DE VOTACAO INVALIDO OU DEVE SER UM NUMERO DE 5 DIGITOS OU NUMERO JA ESTA SENDO USADO!");
+        cout << "********************************************************************************************************" << endl;
+        cout << endl;
+    }else{
+        unsigned int numero_votacao = stoi(numero_votacao_str); // Converte a string para um inteiro
+        bool numeroExiste = false; // Declara uma variavel booleana que inicializa com false e pecorre a lista de candidatos e se tiver algum igual define como true ai interrope esse laço
+        for(const Candidato& c : candidatos){ //Vetor que pecorre o numero de candidatos
+            if(c.numero_votacao == numero_votacao){ // Faz a verificação para saber se não é igual
+                cout << "**********************************************************************************************" << endl;
+                centralizarTexto("ERRO EM INCLUIR CANDIDATO! ESSE NUMERO DE VOTACAO JA ESTA SENDO USADO POR OUTRO CANDIDATO.");
+                cout << "**********************************************************************************************" << endl;
                 cout << endl;
                 numeroExiste = true;
-            // Verifica se a entrada é valida, faz o teste e se der falso ele define a variavel numeroExiste = true
-            }else{
-                numeroExiste = false;
-                for(const Candidato& c : candidatos){
-                    if(c.numero_votacao == numero_votacao){
-                        cout << "**********************************************************************************************" << endl;
-                        centralizarTexto("ERRO EM INCLUIR CANDIDATO! ESSE NUMERO DE VOTACAO JA ESTA SENDO USADO POR OUTRO CANDIDATO.");
-                        cout << "**********************************************************************************************" << endl;
-                        cout << endl;
-                        numeroExiste = true;
-                        break; // Responsavel por interroper o loop caso seja valido a entrada
-                    }
-                }
-            // Utiliza a fun��o find_if para verificar se o numero de votaçao não esta sendo usado por outro candidato, caso esteja haver� um erro define a variavel numeroExiste = true
+                break; // Responsavel por interroper o loop caso seja valido a entrada
             }
-        }while(numeroExiste); // O loop continuara enquanto a variavel numeroExiste for true
+        }
+        if(!numeroExiste){// Se o numero de votação não tiver sido usado por nenhum outro candidado o programa exibe esse comandos mostrando a mensagem que foi armazendado com sucesso
+            cout << "**********************************************" << endl;
+            centralizarTexto("NUMERO DE VOTACAO ARMAZENADO COM SUCESSO!"); // Sera executado caso os id estejam corretos conforme a formata��o e se n�o estiverem iguais
+            cout << "**********************************************" << endl;
+            Candidato candidato (eleitor, numero_votacao); // Adicionar as informacçes
+            candidatos.push_back(candidato); // Candidato com novo elemento e consequente da pra adicionar um novo candidato
+            break; // Para o laço
+        }
+    }
+}while(true); // Se encarrega de repetir o laço
 
-        cout << "**********************************************" << endl;
-        centralizarTexto("NUMERO DE VOTACAO ARMAZENADO COM SUCESSO!"); // Sera executado caso os id estejam corretos conforme a formata��o e se n�o estiverem iguais
-        cout << "**********************************************" << endl;
-
-    Candidato candidato (eleitor, numero_votacao); // Adicionar as informacçes
-    candidatos.push_back(candidato);
-   }
 }
-
+}
 
 

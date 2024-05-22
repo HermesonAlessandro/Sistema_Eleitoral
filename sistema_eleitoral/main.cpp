@@ -6,7 +6,7 @@
 #include "candidatos_eleitores.h" // Inclui o arquivo com as classes e funcoes utilizadas
 #include <algorithm> // Usado para ordenar e procurar
 #include "centralizarTexto.h" // // Inclui o conteudo desse arquivo
-#include <iomanip>
+#include <iomanip> // Biblioteca reponsavel por formatar saida na tela de impressao
 using namespace std;
 
 //função para centralizar o texto
@@ -21,8 +21,14 @@ void centralizarTexto(string texto){ // Definindo a função que é vazia que re
     cout << " *" << endl; // imprime um espaço seguido de um asterisco na tela de console em seguida pula a proxima linha
 }
 
+void mostrarID(const Eleitor& Eleitor){ // Criando uma função mostrarID que recebe um referencia constante do obejeto Eleitor da classe std::stringstream e std::stringstream manipulando string como se fosse fluxo de entrada e saida de dados
+    stringstream id_stream; // Permite a manipulação de string na entrada e saida de dados
+    id_stream << setfill('0') << setw(5) << Eleitor.id; // Faz o preenchimento com zero com a largura de 5 ou seja o que não tiver digito sera zero
+    centralizarTexto("ID: " + id_stream.str()); // Chama função centralizarTexto com string "ID" concatenada com a string formatada com id id_stream.str() que retorna no fluxo id_stream
+}
+
 void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // Função que recebe dois argumentos o vetor de eleitor e numero inteiro de numero_eleitor
-        system("cls");
+        system("cls"); // Limpa a tela de excução para não ficar muito poluida
         cout << "****************************************" << endl;
         centralizarTexto("NUMERO DE ELEITORES: " + to_string(numero_eleitores)); // Fazendo uma conversão para string para armazenar o conjunto de eleitores
         cout << "****************************************" << endl;
@@ -30,9 +36,9 @@ void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // F
         cout << "****************************************" << endl;
         centralizarTexto("ELEITORES CADASTRADOS: ");
         for(int i = 0; i < numero_eleitores; i++){ // Tem esse laço de repetição que pecorre cada eleitor no vetor eleitores para cada eleitor ele imprime o nome, idade, id
-            centralizarTexto("NOME: " + eleitores[i].nome);
-            centralizarTexto("IDADE: " + to_string(eleitores[i].idade));
-            centralizarTexto("ID: " + to_string(eleitores[i].id));
+            centralizarTexto("NOME: " + eleitores[i].nome); // concatenando o nome do eleitor
+            centralizarTexto("IDADE: " + to_string(eleitores[i].idade)); // concatenando o a idade do eleitor
+            mostrarID(eleitores[i]); // Mostrando o id usando a função criada logo acima
 }
          cout << "****************************************" << endl;
 }
@@ -45,10 +51,12 @@ void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que rece
      cout << "****************************************" << endl;
      centralizarTexto("CANDIDATOS CADASTRADOS:");
      for(const auto& candidato: candidato){ // Loop que pecorre cada candidato no vetor imprindo seu nome idade e etc
-        centralizarTexto("NOME: " + candidato.nome);
-        centralizarTexto("IDADE: " + to_string(candidato.idade));
-        centralizarTexto("ID: " + to_string(candidato.id));
-        centralizarTexto("NUMERO DA VOTACAO: " + to_string(candidato.numero_votacao));
+        centralizarTexto("NOME: " + candidato.nome); // Concatenando o nome do candidato
+        centralizarTexto("IDADE: " + to_string(candidato.idade)); // Concatenando a idade do candidato
+        mostrarID(candidato); // Mostrando o id do candidato conforme a função criada logo acima
+        stringstream numero_votacao_stream; // Tratamento de entrada e saida de dados
+        numero_votacao_stream << setfill('0') << setw(5) << candidato.numero_votacao; // Aqui quando for menor 5 ele vai  completar o resto tudo com zero
+        centralizarTexto("NUMERO DA VOTACAO: " + numero_votacao_stream.str()); // Aqui ele vai pegar o valor inteiro convertido para string e mostrar na tela
      }
      cout << "****************************************" << endl;
 } // Término da função
@@ -95,6 +103,7 @@ int main(){
     centralizarTexto("1 - PARA CONTINUAR! ");
     centralizarTexto("2 - PARA SAIR!");
     cout << "****************************************" << endl;
+    cout << endl;
     cout << "ESCOLHA A OPCAO DESEJADA: " << endl;;
     }
 
@@ -152,8 +161,12 @@ int main(){
             centralizarTexto("NAO HA CANDIDATOS SUFICIENTES.");
             cout << "****************************************" << endl;
             return 0; // Encerra o programa
+        }else if(candidatos.size() < 2){ // Fazendo a verificação dos candidatos cadastrados antes da eleição
+            cout << "******************************************************************************" << endl;
+            centralizarTexto("NAO E POSSIVEL INICIAR A ELEICAO, PRECISAMOS DE PELO MENOS DOIS CANDIDATOS");
+            cout << "******************************************************************************" << endl;
+            return 0; // Encerra o programa
         }
-
         int iniciarTelaEleicao; // Variavel para eleição
         cout << "****************************************" << endl;
         centralizarTexto("DESEJA INICIAR A ELEICAO?");
@@ -175,14 +188,14 @@ int main(){
             cout << "****************************************" << endl;
             centralizarTexto("DESEJA INICIAR A ELEICAO?");
             centralizarTexto("1 - SIM");
-            centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
+            centralizarTexto("2 - NAO, QUERO SAIR DO SISTEMA");
             cout << "****************************************" << endl;
             cout << endl;
             cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
             // Exibo o sistema novamente para o usuario digitar até que ele digite algo conferente
         }
         if(iniciarTelaEleicao == 1){
-
+            system("cls");
         }else{
         system("cls"); // limpa o sistema
         cout << "**********************************************************************" << endl;
