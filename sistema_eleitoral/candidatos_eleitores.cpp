@@ -1,8 +1,8 @@
 #include <algorithm> // Manipulação de sequencias de elementos
-#include <iostream>
+#include <iostream> // Biblioteca padrão do c++
 #include <string> // Fornece a classe de string variadas
 #include <vector> // Contêiner que crescer e aumenta conforme o numero de informação
-#include "candidatos_eleitores.h"
+#include "candidatos_eleitores.h" // Importação do cabeçalho para conseguir usar da função criada na main.cpp
 #include "centralizarTexto.h" // Inclui o conteudo desse arquivo
 #include <limits> // Define um limite para um tipo de dado
 #include <functional> // Biblioteca que oferece varias funçoes, classes, e objetos com referencia a programaçao funcional
@@ -27,20 +27,25 @@ bool validarNome(const string& nome) { // Criação de uma função que receba u
 
 void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>& candidatos) {// Função de candidatos e eleitores
     do {
-        cout << "DIGITE O NOME DO ELEITOR: " << endl;
-        cin.ignore();
-        getline(cin, eleitor.nome); // Lê a linha inteira da entrada padrão e armazena na variavel nome
+    cout << "DIGITE O NOME DO ELEITOR: " << endl; //Pede o nome para o usuario
+    getline(cin, eleitor.nome); // Faz a leitura da linha da inteira
+    if (eleitor.nome.empty()) { // Se a linha estiver vazia imprime um erro dizendo que o usuario não pode ter o nome vazio
         cout << endl;
-
-        if (validarNome(eleitor.nome)) { // Validador de nome se retornar true ele vai retornar verdade e logo vai parar o laço com break
-            break;
-        } else {
-            cout << "******************************************************" << endl;
-            centralizarTexto("ERRO! O NOME DEVE CONTER APENAS LETRAS E ESPACOS!");
-            cout << "******************************************************" << endl;
-            cout << endl;
-        }
-    } while (true); // Vai executar enquanto aquilo for verdade
+        cout << "****************************************" << endl;
+        centralizarTexto("ERRO! O NOME NAO PODE SER VAZIO!");
+        cout << "****************************************" << endl;
+        cout << endl; // Imprime a mensagem de erro
+    } else if (validarNome(eleitor.nome)) { //Nome for valido programa sai do loop
+        break;
+    } else {
+        cout << endl;
+        cout << "******************************************************" << endl;
+        centralizarTexto("ERRO! O NOME DEVE CONTER APENAS LETRAS E ESPACOS!"); //Se a entrada não for satisfatoria ele imprime uma mensagem informando que so pode ser digidado numeros e letras
+        cout << "******************************************************" << endl;
+        cout << endl;
+    }
+} while (true); // Vai executar enquanto aquilo for verdade
+    cout << endl;
 
     string idade_str; // Criação de uma variavel do tipo string
     cout<<"DIGITE A IDADE DO ELEITOR"<<endl;

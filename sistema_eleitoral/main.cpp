@@ -71,8 +71,8 @@ int main(){
     cout << "****************************************" << endl;
     centralizarTexto("SISTEMA ELEITORAL");
     centralizarTexto("SISTEMA DESENVOLVIDO POR: ");
-    centralizarTexto("ESDRAS RODRIGUES MILITAO" );
-    centralizarTexto("ANTONIO GUILHERME SOUSA LIMA");
+    centralizarTexto("ANTONIO GUILHERME SOUSA LIMA" );
+    centralizarTexto("ESDRAS RODRIGUES MILITAO");
     centralizarTexto("HERMESON ALESSANDRO MELO DE SOUSA");
     centralizarTexto("MATHEUS LEITE LIMA");
     centralizarTexto("PEDRO ARTHUR CARVALHO MACHADO");
@@ -89,24 +89,30 @@ int main(){
     cout << endl;
     cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
 
-    while(!(cin >> numero) || (numero != 1 && numero != 2)){// armazenando um valor na variavel e atribuindo dois numero ao menu
-    cin.clear(); // limpar o estado do erro
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Toda essa linha descarta a entrada incorreta
-    system("cls");// limpar todo codigo escrito para n�o ficar poluido
-    cout << "**********************************************" << endl;
-    centralizarTexto("VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!");// cada vez que não o laço não é atendido volta para o inicio
-    cout << "**********************************************" << endl;
-    cout << endl;
-    cout << endl;
-    cout << "****************************************" << endl;
-    centralizarTexto("MENU: ");
-    centralizarTexto("1 - PARA CONTINUAR! ");
-    centralizarTexto("2 - PARA SAIR!");
-    cout << "****************************************" << endl;
-    cout << endl;
-    cout << "ESCOLHA A OPCAO DESEJADA: " << endl;;
+    string entrada; // Criação de uma variavel para o usuario
+    while(true){ // Laço de repetição que inicia automatico
+    cin >> entrada; // Leitura da variavel
+    if(entrada == "1" || entrada == "2"){
+        numero = stoi(entrada);
+        break; // Basicamente se o numero for 1 ou 2 ele vai converter para inteiro armazenando na variavel numero e depois encerra o break
+    }else{
+        cin.clear(); // Limpa buffer de entrada
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignora o que esta escrito incorretamente pelo o usuario
+        system("cls");// limpar todo codigo escrito para n�o ficar poluido
+        cout << "**********************************************" << endl;
+        centralizarTexto("VOCE DIGITOU ALGO ERRADO, TENTE NOVAMENTE!");// cada vez que não o laço não é atendido volta para o inicio
+        cout << "**********************************************" << endl;
+        cout << endl;
+        cout << endl;
+        cout << "****************************************" << endl;
+        centralizarTexto("MENU: ");
+        centralizarTexto("1 - PARA CONTINUAR! ");
+        centralizarTexto("2 - PARA SAIR!");
+        cout << "****************************************" << endl;
+        cout << endl;
+        cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
+        } // Imprime novamente a tela
     }
-
     switch(numero){ // verifica os valores digitados pelo usuario
     case 1: { // caso seja verdade todo esse conjunto de codigos serão executados
         system("cls"); // limpa o sistema
@@ -127,7 +133,7 @@ int main(){
             cout << "**********************************************" << endl;
             cin >> qtd_eleitores;
             cout << endl;
-        } // While responsavel por ver se o que o usuario digitar � maior ou igual a 2 e se � um numero
+        } // While responsavel por ver se o que o usuario digitar numero maior ou igual a 2 e se é um numero
         cout << "****************************************" << endl;
         centralizarTexto("QUANTIDADE REGISTRADA COM SUCESSO!");
         cout << "****************************************" << endl;
@@ -149,11 +155,11 @@ int main(){
             centralizarTexto("ELEITOR CADASTRADO COM SUCESSO!");
             cout << "****************************************" << endl;
         }
-        cout << endl;
-        mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
-        cout << endl;
-        mostrarCandidatos(candidatos); // Chamando a função mostrarCandidatos
-        cout << endl;
+            cout << endl;
+            mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
+            cout << endl;
+            mostrarCandidatos(candidatos); // Chamando a função mostrarCandidatos
+            cout << endl;
 
         if(candidatos.size() < 1){ // Fazendo a verificação de quantos candidatos tem no sistema
             cout << "****************************************" << endl;
@@ -168,6 +174,7 @@ int main(){
             return 0; // Encerra o programa
         }
         int iniciarTelaEleicao; // Variavel para eleição
+        string entrada; // variável que armazena a entrada do usuario
         cout << "****************************************" << endl;
         centralizarTexto("DESEJA INICIAR A ELEICAO?");
         centralizarTexto("1 - SIM");
@@ -176,7 +183,12 @@ int main(){
         cout << endl;
         cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
         // Menu da eleição
-        while(!(cin >> iniciarTelaEleicao)|| (iniciarTelaEleicao !=1 && iniciarTelaEleicao !=0)){ //Laço de repetição para caso o usuario digite algo diferente de 0 e 1
+        while(true){ //Laço de repetição ja sendo executado pois é verdade
+            cin >> entrada;
+            if(entrada == "1" || entrada == "0"){
+                iniciarTelaEleicao = stoi(entrada);
+                break;
+            }else{
             cin.clear(); // Limpa a tela
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora e passa para a proxima linha
             system("cls"); // Limpo a execução para não ficar poluido de informações
@@ -188,20 +200,70 @@ int main(){
             cout << "****************************************" << endl;
             centralizarTexto("DESEJA INICIAR A ELEICAO?");
             centralizarTexto("1 - SIM");
-            centralizarTexto("2 - NAO, QUERO SAIR DO SISTEMA");
+            centralizarTexto("0 - NAO, QUERO SAIR DO SISTEMA");
             cout << "****************************************" << endl;
             cout << endl;
             cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
             // Exibo o sistema novamente para o usuario digitar até que ele digite algo conferente
         }
-        if(iniciarTelaEleicao == 1){
-            system("cls");
-        }else{
+    }
+        if(iniciarTelaEleicao == 1){ // Condicional que verifica quando a variavel for igual 1
+            system("cls"); // LImpa a tela
+            for(int i = 0; i < numero_eleitores; i++){ // Laço de repetição para cada eleitor armazenado na variavel i servindo com contador
+                cout << "\n=== ELEITOR " << i + 1 << " ===\n";
+                cout << endl;
+                cout << "****************************************" << endl;
+                centralizarTexto("ELEITOR: " + eleitores[i].nome);
+                cout << "****************************************" << endl;
+                cout << endl;
+
+                mostrarCandidatos(candidatos); //As informações logo acima imprimem cada eleitor e tambem mostra a lista de candidatos
+
+
+                cout << endl;
+                cout << "**********************************************************************" << endl;
+                centralizarTexto("DIGITE O NUMERO DE VOTACAO DO CANDIDATO OU 0 PARA VOTAR EM BRANCO");
+                cout << "**********************************************************************" << endl;
+                                        // Seguindo ele faz o pedido para o numero de votaçao
+                string voto_str; //Variavel para a votação
+                do{
+                    cin >> voto_str; // Lendo a variavel
+                    cout << endl;
+                if(voto_str == "0" || (voto_str.size() == 5 && all_of(voto_str.begin(), voto_str.end(), ::isdigit))){
+                    if(voto_str != "0"){
+                        bool numeroVotacaoExiste = false;
+                        int voto = stoi(voto_str);
+                        for(const auto& candidado: candidatos){
+                            if(candidado.numero_votacao == voto){
+                                numeroVotacaoExiste = true;
+                                break;
+                            }
+                        }
+                        if(!numeroVotacaoExiste){
+                        cout << "**************************************************************************" << endl;
+                        centralizarTexto("ERRO! O NUMERO DE VOTACAO DIGITADO NAO CORRESPONDE A NENHUM CANDIDATO.");
+                        cout << "**************************************************************************" << endl;
+                            continue;
+                        }
+                    }
+                    cout << "****************************************" << endl;
+                    centralizarTexto("VOTO CADASTRADO COM SUCESSO!");
+                    cout << "****************************************" << endl;
+                    break;
+                }else{
+                    cout << "****************************************************************************" << endl;
+                    centralizarTexto("ERRO! DIGITE O NUMERO DE VOTACAO DO CANDIDATO OU 0 PARA VOTAR EM BRANCO.");
+                    cout << "****************************************************************************" << endl;
+                    } // Basicamente ele recebeu valor de 5 digistos pelo
+                }while(true);
+            }
+        }
+        else{
         system("cls"); // limpa o sistema
         cout << "**********************************************************************" << endl;
         centralizarTexto("SISTEMA ENCERRADO COM SUCESSO, CLIQUE EM QUALQUER TECLA PARA SAIR!");
         cout << "**********************************************************************" << endl;
-        } // Else sera executado quando o usuario digitar 0
+        } // Else sera executado quando o usuario digitar 0 ou numero de 5 digitos caso tenha algum candidato ele sai do loop se não fica no loop infinito até colocar a informação verdadeira
     }
 
         break; // encerra o laço imediatamente
