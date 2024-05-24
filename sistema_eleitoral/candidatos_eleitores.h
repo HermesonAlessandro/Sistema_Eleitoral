@@ -12,7 +12,7 @@ public:
     string nome;
     unsigned int idade;
     unsigned int id;
-};
+}; // Classe que contem alguns atributos nome, idade, id;
 
 //Criar  classe Candidato (Herdando nome, idade e ID do eleitor
 
@@ -34,7 +34,7 @@ class Candidato : public Eleitor{
     unsigned int votos; //Atributo para armazenar a quantidade de votos
 };
 
-void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>&candidatos);
+void atribuirValoresEleitor(Eleitor& eleitor, const vector<Eleitor>& eleitores, vector<Candidato>&candidatos); //Atribuidor de valores para o eleitor
 
 
 

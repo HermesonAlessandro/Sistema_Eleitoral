@@ -36,8 +36,8 @@ void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // F
         cout << "****************************************" << endl;
         centralizarTexto("ELEITORES CADASTRADOS: ");
         for(int i = 0; i < numero_eleitores; i++){ // Tem esse laço de repetição que pecorre cada eleitor no vetor eleitores para cada eleitor ele imprime o nome, idade, id
-            centralizarTexto("NOME: " + eleitores[i].nome); // concatenando o nome do eleitor
-            centralizarTexto("IDADE: " + to_string(eleitores[i].idade)); // concatenando o a idade do eleitor
+            centralizarTexto("NOME: " + eleitores[i].nome); // Concatenando o nome do eleitor
+            centralizarTexto("IDADE: " + to_string(eleitores[i].idade)); // Concatenando o a idade do eleitor
             mostrarID(eleitores[i]); // Mostrando o id usando a função criada logo acima
 }
          cout << "****************************************" << endl;
@@ -60,6 +60,54 @@ void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que rece
      }
      cout << "****************************************" << endl;
 } // Término da função
+
+void mostrarResultados(const vector<Candidato>& candidatos, int votosEmBranco){ // Funçao serve para mostrar o resultado pecorrendo um vetor pecorrendo um vetor de candidatos e criando uma variavel para armazenar votos em brancos
+    system("cls"); // Limpando a tela para não ficar poluido
+    cout << "****************************************" << endl;
+    centralizarTexto("RESULTADOS DA ELEICAO");
+    cout << "****************************************" << endl;
+    cout << endl;
+    for(const auto& candidato: candidatos){ //Criado um laço de repetição que pecorrera cada candidato
+        cout << "****************************************" << endl;
+        centralizarTexto("CANDIDATO: " + candidato.nome); // Imprimindo o nome do candidato
+        centralizarTexto("VOTOS: " + to_string(candidato.getVotos())); // Imprimindo os votos de cada candidato convertendo o mesmo para inteiro
+        cout << "****************************************" << endl;
+        cout << endl;
+    }
+
+    cout << "****************************************" << endl;
+    centralizarTexto("VOTOS EM BRANCO: " + to_string(votosEmBranco)); // Aqui ele imprime a quantidade de votos em branco fazendo a mesma coisa convertendo numero para string
+    cout << "****************************************" << endl;
+    cout << endl;
+}
+
+bool compararIdade(const Candidato& c1, const Candidato& c2) { // Função que leva dois parametros ambos sao referencias a objetos aos quais c1 e c2 se referem e nao podem ser modificada dentro da função retorna um bool que é valor booleano
+    return c1.idade < c2.idade; // Ele retorna o resulatado da comparação de c1 e c2 . A função portanto verifica se a idade do candidato c1 é menor do que a idade do c2 retorna true se sim e false para não
+}
+
+pair<Candidato, string> determinarVencedor(const vector<Candidato>& candidatos){ // Funçao que recebe um vetor de candidatos como argumento um par de informações que candidato vencedor e metodo de desempate para determinar o vencedor
+    Candidato vencedor = candidatos[0];
+    string metodoDesempate = "MAIOR NUMERO DE VOTOS";
+    // Essas duas linhas logo acima inicializa o vencedor como o primeiro candidato no vetor define o metodo de desempate inicialmente como "maior numero de votos"
+    for(const auto& candidato: candidatos){ // Loop que pecorre os candidato no vetor candidatos
+        if(candidato.getVotos() > vencedor.getVotos()){
+            vencedor = candidato;
+            metodoDesempate = "MAIOR NUMERO DE VOTOS";
+            // Essas três linhas logo acima se um candidato tem mais votos do que um vencedor atual o candidato atual passa a ser o mais novo campeão utilizando o metodo de desempate como "maior numero de votos"
+        }else if(candidato.getVotos() == vencedor.getVotos()){
+            if(candidato.idade > vencedor.idade){
+                vencedor = candidato;
+                metodoDesempate = "MAIOR IDADE";
+
+            }else if(candidato.idade == vencedor.idade && candidato.id > vencedor.id){
+                vencedor = candidato;
+                metodoDesempate = "MAIOR ID";
+            }
+            // Basicamente os else if verificam, se o candidato e o vencedor atual tem o mesmo numero de votos o criterio agora é a idade ou seja quem tiver a maior idade ganha se permanecer empatado o criterio de desempate é o id quem tiver o maior id ganha
+        }
+    }
+    return make_pair(vencedor, metodoDesempate); // Funçao retorna um par de informações que são nome do eleitor vitorioso e criterio de desempate utilizado ou não dependendo do caso
+}
 
 int main(){
     setlocale(LC_ALL, ""); // traz para a lingua do sistema operacional
@@ -155,6 +203,7 @@ int main(){
             centralizarTexto("ELEITOR CADASTRADO COM SUCESSO!");
             cout << "****************************************" << endl;
         }
+            sort(candidatos.begin(), candidatos.end(), compararIdade); // Aqui ele faz a ordenação do vetor de candidatos por meio da idade
             cout << endl;
             mostrarEleitor(eleitores, numero_eleitores); // Chamando a função MostrarEleitor
             cout << endl;
@@ -185,8 +234,8 @@ int main(){
         // Menu da eleição
         while(true){ //Laço de repetição ja sendo executado pois é verdade
             cin >> entrada;
-            if(entrada == "1" || entrada == "0"){
-                iniciarTelaEleicao = stoi(entrada);
+            if(entrada == "1" || entrada == "0"){ // Caso o usuario digite uma dessas informações
+                iniciarTelaEleicao = stoi(entrada); // Vira a entrada
                 break;
             }else{
             cin.clear(); // Limpa a tela
@@ -206,14 +255,14 @@ int main(){
             cout << "ESCOLHA A OPCAO DESEJADA: " << endl;
             // Exibo o sistema novamente para o usuario digitar até que ele digite algo conferente
         }
-    }
+    }   int votoEmBranco = 0; // Atribuindo uma variavel e informando que ela vai se inicializar por zero
         if(iniciarTelaEleicao == 1){ // Condicional que verifica quando a variavel for igual 1
             system("cls"); // LImpa a tela
             for(int i = 0; i < numero_eleitores; i++){ // Laço de repetição para cada eleitor armazenado na variavel i servindo com contador
                 cout << "\n=== ELEITOR " << i + 1 << " ===\n";
                 cout << endl;
                 cout << "****************************************" << endl;
-                centralizarTexto("ELEITOR: " + eleitores[i].nome);
+                centralizarTexto("ELEITOR: " + eleitores[i].nome); // Imprime o nome de cada eleitor que se cadastrar
                 cout << "****************************************" << endl;
                 cout << endl;
 
@@ -225,38 +274,56 @@ int main(){
                 centralizarTexto("DIGITE O NUMERO DE VOTACAO DO CANDIDATO OU 0 PARA VOTAR EM BRANCO");
                 cout << "**********************************************************************" << endl;
                                         // Seguindo ele faz o pedido para o numero de votaçao
+
                 string voto_str; //Variavel para a votação
                 do{
                     cin >> voto_str; // Lendo a variavel
                     cout << endl;
-                if(voto_str == "0" || (voto_str.size() == 5 && all_of(voto_str.begin(), voto_str.end(), ::isdigit))){
-                    if(voto_str != "0"){
+                if(voto_str == "0" || (voto_str.size() == 5 && all_of(voto_str.begin(), voto_str.end(), ::isdigit))){ // Verifica a entrada do usuario é valida, no caso um voto de 0 e 5 digitos representando numero de votação
+                    if(voto_str == "0"){
+                        votoEmBranco++;
+                        // Essa condição verifica se o usuario digitou 0 se for verdade a variavel votoEmBranco é imcrementada
+
+                    }else{
                         bool numeroVotacaoExiste = false;
                         int voto = stoi(voto_str);
-                        for(const auto& candidado: candidatos){
+                        for(auto& candidado: candidatos){
                             if(candidado.numero_votacao == voto){
+                                candidado.adcionarVoto();
                                 numeroVotacaoExiste = true;
                                 break;
                             }
                         }
+                        // Esse senão significa que o eleitor voltou em algum candidato ou seja ele vai pecorrer o vetor de candidatos e vai ver se algum candidato tem aquele numero de votação para incrementar na contagem de votos desse candidato
                         if(!numeroVotacaoExiste){
-                        cout << "**************************************************************************" << endl;
-                        centralizarTexto("ERRO! O NUMERO DE VOTACAO DIGITADO NAO CORRESPONDE A NENHUM CANDIDATO.");
-                        cout << "**************************************************************************" << endl;
+                        cout << "********************************************************************************************" << endl;
+                        centralizarTexto("ERRO! O NUMERO DE VOTACAO DIGITADO NAO CORRESPONDE A NENHUM CANDIDATO, DIGITE NOVAMENTE.");
+                        cout << "********************************************************************************************" << endl;
                             continue;
                         }
+                        // Essa condição é executada quando nenhum numero de votação é encontrada na vetor de candidatos, o codigo exibe o erro e continua com a interação com loop while
                     }
                     cout << "****************************************" << endl;
                     centralizarTexto("VOTO CADASTRADO COM SUCESSO!");
                     cout << "****************************************" << endl;
                     break;
+                    // Se o voto for valido codigo exibe essa mensagem de sucesso e sai do loop while
                 }else{
                     cout << "****************************************************************************" << endl;
                     centralizarTexto("ERRO! DIGITE O NUMERO DE VOTACAO DO CANDIDATO OU 0 PARA VOTAR EM BRANCO.");
                     cout << "****************************************************************************" << endl;
-                    } // Basicamente ele recebeu valor de 5 digistos pelo
+                    }
                 }while(true);
+                // Se a entrada  do usuario não for valida, o codigo exibe uma mensagem de erro e continua para a proxima interação com loop while
             }
+            mostrarResultados(candidatos, votoEmBranco); // Exibe o resultado da eleição
+            pair<Candidato, string> resultado = determinarVencedor(candidatos);
+            cout << "****************************************" << endl;
+            centralizarTexto("O VENCEDOR DA ELEICAO E: " + resultado.first.nome);
+            cout << "****************************************" << endl;
+            cout << endl;
+            cout << "O METODO DE DESEMPATE FOI: " << resultado.second << endl;
+            // Finalmente é chamado a função determinarVencedor para determinar o vencedor da eleição e exibe o nome e o metodo de desempate utilizado
         }
         else{
         system("cls"); // limpa o sistema
