@@ -7,7 +7,7 @@
 #include <algorithm> // Usado para ordenar e procurar
 #include "centralizarTexto.h" // // Inclui o conteudo desse arquivo
 #include <iomanip> // Biblioteca reponsavel por formatar saida na tela de impressao
-using namespace std;
+using namespace std; // Padrão do c++
 
 //função para centralizar o texto
 void centralizarTexto(string texto){ // Definindo a função que é vazia que recebe como argumento um texto do tipo string
@@ -43,7 +43,7 @@ void mostrarEleitor(std::vector<Eleitor>& eleitores, int numero_eleitores){ // F
          cout << "****************************************" << endl;
 }
 
-void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que recebe um vetor de candidatos onde tem algumas propiedades como nome, idade, id, numero_votação
+void mostrarCandidatos(const vector<Candidato>& candidato){ // Função que recebe um vetor de candidatos onde tem algumas propriedades como nome, idade, id, numero_votação
      cout << "****************************************" << endl;
      centralizarTexto("NUMEROS DE CANDIDATOS: " + std::to_string(candidato.size())); // Ele imprime o numero de candidatos convertendo o inteiro para string
      cout << "****************************************" << endl;
@@ -235,7 +235,7 @@ int main(){
         while(true){ //Laço de repetição ja sendo executado pois é verdade
             cin >> entrada;
             if(entrada == "1" || entrada == "0"){ // Caso o usuario digite uma dessas informações
-                iniciarTelaEleicao = stoi(entrada); // Vira a entrada
+                iniciarTelaEleicao = stoi(entrada); // Vira a entrada convrtida para inteiro
                 break;
             }else{
             cin.clear(); // Limpa a tela
@@ -273,7 +273,7 @@ int main(){
                 cout << "**********************************************************************" << endl;
                 centralizarTexto("DIGITE O NUMERO DE VOTACAO DO CANDIDATO OU 0 PARA VOTAR EM BRANCO");
                 cout << "**********************************************************************" << endl;
-                                        // Seguindo ele faz o pedido para o numero de votaçao
+                // Seguindo ele faz o pedido para o numero de votaçao
 
                 string voto_str; //Variavel para a votação
                 do{
@@ -319,10 +319,10 @@ int main(){
             mostrarResultados(candidatos, votoEmBranco); // Exibe o resultado da eleição
             pair<Candidato, string> resultado = determinarVencedor(candidatos);
             cout << "****************************************" << endl;
-            centralizarTexto("O VENCEDOR DA ELEICAO E: " + resultado.first.nome);
+            centralizarTexto("O VENCEDOR DA ELEICAO E: " + resultado.first.nome); // Imprimindo e pegando o primeiro valor no tratamentos de dados cujo o nome é resultado
             cout << "****************************************" << endl;
             cout << endl;
-            cout << "O METODO DE DESEMPATE FOI: " << resultado.second << endl;
+            cout << "O METODO DE DESEMPATE FOI: " << resultado.second << endl; // Imprimindo e pegando o primeiro valor como referencia que é no second e olhando na estrutura de dados cujo o nome é resultado
             // Finalmente é chamado a função determinarVencedor para determinar o vencedor da eleição e exibe o nome e o metodo de desempate utilizado
         }
         else{
